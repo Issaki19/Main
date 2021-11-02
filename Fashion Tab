@@ -1,0 +1,72 @@
+public class Amazon {
+	public static void main(String[] args) throws InterruptedException, AWTException, IOException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Tanvik\\eclipse-workspace\\Selenium\\Driver\\chromedriver.exe");
+	
+		//interface			//class
+		
+		WebDriver driver = new ChromeDriver();							//upcasting
+		driver.manage().window().maximize();
+		
+		driver.get("https://www.amazon.in/ref=nav_logo");
+		
+		String Url = driver.getCurrentUrl();							//currentURL
+		System.out.println("Current URL is :" +Url);
+		
+		Actions a = new Actions (driver);
+		
+		WebElement mobile = driver.findElement(By.xpath("(//a[@class='nav-a  '])[1]"));
+		a.moveToElement(mobile).build().perform();
+		Thread.sleep(2000);
+		a.contextClick().perform();								//Rightclick
+		
+		WebElement fashion = driver.findElement(By.xpath("(//a[@class='nav-a  '])[3]"));
+		a.moveToElement(fashion).build().perform();
+		Thread.sleep(2000);
+		a.contextClick().perform();
+		Robot r = new Robot();
+		r.keyPress(KeyEvent.VK_DOWN);
+		r.keyRelease(KeyEvent.VK_DOWN);
+		
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
+		
+		WebElement customer = driver.findElement(By.xpath("(//a[@class='nav-a  '])[4]"));
+		a.moveToElement(customer).build().perform();
+		Thread.sleep(2000);
+		a.contextClick().perform();
+		
+		r.keyPress(KeyEvent.VK_DOWN);
+		r.keyRelease(KeyEvent.VK_DOWN);
+		
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
+		
+		WebElement electronic = driver.findElement(By.xpath("(//a[@class='nav-a  '])[5]"));
+		a.moveToElement(electronic).build().perform();
+		Thread.sleep(2000);
+		a.contextClick().perform();
+		
+		r.keyPress(KeyEvent.VK_DOWN);
+		r.keyRelease(KeyEvent.VK_DOWN);
+		
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
+		
+		r.keyPress(KeyEvent.VK_DOWN);
+		r.keyRelease(KeyEvent.VK_DOWN);
+		
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
+		
+		Thread.sleep(3000);
+		
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File path = new File("C:\\Users\\Tanvik\\eclipse-workspace\\Selenium\\Screenshot\\amazon.png");
+		FileUtils.copyFile(source, path);
+		Thread.sleep(2000);
+		
+		driver.quit();
+	}
+
+}
