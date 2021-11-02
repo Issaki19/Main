@@ -1,0 +1,70 @@
+package Runner;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+import Base.Base;
+import Pom.Pom;
+
+
+public class Main extends Base {
+	
+	public static void main(String[] args) throws IOException {
+		
+		
+		
+		FileInputStream fis  = new FileInputStream ("C:\\Users\\Tanvik\\eclipse-workspace\\Demo\\src\\test\\java\\automation.properties");
+		Properties p = new Properties();
+		p.load(fis);
+		
+		String brow = p.getProperty("browser");
+		String link = p.getProperty("url");
+		String name = p.getProperty("user");
+		String pass = p.getProperty("pwd");
+		
+		
+		BrowserLaunch(brow);
+		
+		LaunchingURL(link);
+		
+		PageFactory.initElements(driver, Pom.class);
+		
+		
+		keypass(Pom.username ,name );   // sendkeys
+		
+		keypass(Pom.pass , pass ) ;  // sendkeys
+		
+		clickonElements(Pom.signin);   // click
+		
+		action(Pom.dresses);
+		
+		clickonElements(Pom.summer);
+		
+		clickonElements(Pom.printedsummer);
+		
+		implicitwait();
+		
+		clickonElements(Pom.addtocart);
+		
+		clickonElements(Pom.proceedtocheck);
+		
+		clickonElements(Pom.confirmationcheck);
+		
+		clickonElements(Pom.addresscheck);
+		
+		clickonElements(Pom.buttonclick);
+		
+		clickonElements(Pom.shipping);
+		
+		clickonElements(Pom.payment);
+		
+		clickonElements(Pom.finalconfirm);
+		
+		screenshot();
+	}
+
+}
